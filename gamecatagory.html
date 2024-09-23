@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Category</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/uigame.css">
+</head>
+
+<body>
+
+  <div class="container text-center select-category">
+    <h1 class="choose-title">เลือกหมวดหมู่ที่คุณต้องการ</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="category-card" id="animals">
+          <img src="img/animal.png" alt="Animals" class="category-image">
+          <h3>สัตว์</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="category-card" id="fruits">
+          <img src="img/fruits.png" alt="Fruits" class="category-image">
+          <h3>ผลไม้</h3>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <script>
+    const clickStart = new Audio('sounds/game-start.mp3');
+    document.getElementById('animals').addEventListener('click', function () {
+      clickStart.play();
+
+      setTimeout(function () {
+        window.location.href = 'rank.html';
+      }, 500);
+    });
+
+
+    document.getElementById('fruits').addEventListener('click', function () {
+      clickStart.play();
+
+      setTimeout(function () {
+        window.location.href = 'app_fruits.html';
+      }, 500);
+    });
+  </script>
+
+</body>
+
+</html>

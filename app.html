@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
 
   <title>Memory Game</title>
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
+  <section class="score-section">
+    <div class="score-container">
+      <div id="score" class="score">Score: 0</div>
+    </div>
+    <button id="exit-btn2" class="exit">Exit</button>
+  </section>
   <section class="memory-game">
     <div class="memory-card" data-framework="animal1">
       <img class="front-face" src="img\animal1.svg" alt="animal1" />
@@ -63,7 +71,25 @@
       <img class="back-face" src="img\animal-badge.svg" alt="animal-badge" />
     </div>
   </section>
+  
+  <div id="popup-overlay" class="popup-overlay">
+    <div class="popup-content">
+        <p> คุณแน่ใจหรือไม่ที่จะออกจากเกม ? </p>
+        <button id="confirm-exit" class="btn">ใช่</button>
+        <button id="cancel-exit" class="btn">ไม่</button>
+    </div>
+</div>
+
+<div id="game-end-popup" class="popup">
+    <div class="popup-content">
+        <p>คุณชนะ !</p>
+        <p id="final-score" style="font-family: 'Kanit';">คะแนนของคุณคือ: 0</p>
+        <button id="restart-btn" class="btn">เล่นอีกครั้ง</button>
+        <button id="exit-btn" class="btn">ออกจากเกม</button>
+    </div>
+</div>
 
   <script src="scripts.js"></script>
 </body>
+
 </html>
