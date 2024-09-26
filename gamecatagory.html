@@ -14,6 +14,7 @@
   <div class="container text-center select-category">
     <h1 class="choose-title">เลือกหมวดหมู่ที่คุณต้องการ</h1>
     <div class="row justify-content-center">
+      
       <div class="col-md-4">
         <div class="category-card" id="animals">
           <img src="img/animal.png" alt="Animals" class="category-image">
@@ -28,6 +29,14 @@
         </div>
       </div>
 
+            
+      <div class="col-md-4">
+        <div class="category-card" id="star">
+          <img src="img/planet.png" class="category-image">
+          <h3>ดาวเคราะห์</h3>
+        </div>
+      </div>
+
 
 
     </div>
@@ -39,7 +48,7 @@
       clickStart.play();
 
       setTimeout(function () {
-        window.location.href = 'rank.html';
+        window.location.href = 'rankanimal.html';
       }, 500);
     });
 
@@ -49,6 +58,14 @@
 
       setTimeout(function () {
         window.location.href = 'app_fruits.html';
+      }, 500);
+    });
+
+    document.getElementById('star').addEventListener('click', function () {
+      clickStart.play();
+
+      setTimeout(function () {
+        window.location.href = 'rankstar.html';
       }, 500);
     });
   </script>
