@@ -1,0 +1,44 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="helloButton">Say Hello</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Management</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Welcome to the Memory Game</h1>
+
+  <!-- สร้างห้องใหม่ -->
+  <section>
+    <h2>Create a Room</h2>
+    <button id="create-room">Create Room</button>
+    <p id="room-code-display"></p> <!-- แสดงรหัสห้องที่สร้าง -->
+  </section>
+
+  <!-- เข้าร่วมห้อง -->
+  <section>
+    <h2>Join a Room</h2>
+    <input type="text" id="room-code-input" placeholder="Enter room code">
+    <button id="join-room">Join Room</button>
+    <p id="error-message" style="color:red;"></p> <!-- แสดง error ถ้าเข้าห้องไม่ได้ -->
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>

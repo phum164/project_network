@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <section class="score-section">
+        <div class="score-container"> 
+            <div id="score" class="score">Score: 0</div>
+        </div>        
+        <button id="exit-btn2" class="exit">Exit</button>
+    </section>
+    <section class="memory-game">
+        <div class="memory-card" data-framework="f1">
+            <img class="front-face" src="img\f1.svg" alt="f1" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+        <div class="memory-card" data-framework="f1">
+            <img class="front-face" src="img\f1.svg" alt="f1" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+
+        <div class="memory-card" data-framework="f2">
+            <img class="front-face" src="img\f2.svg" alt="f2" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+        <div class="memory-card" data-framework="f2">
+            <img class="front-face" src="img\f2.svg" alt="f2" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+
+        <div class="memory-card" data-framework="f3">
+            <img class="front-face" src="img\f3.svg" alt="f3" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+        <div class="memory-card" data-framework="f3">
+            <img class="front-face" src="img\f3.svg" alt="f3" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+
+
+
+        <div class="memory-card" data-framework="f4">
+            <img class="front-face" src="img\f4.svg" alt="f4" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+        <div class="memory-card" data-framework="f4">
+            <img class="front-face" src="img\f4.svg" alt="f4" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+
+        <div class="memory-card" data-framework="f5">
+            <img class="front-face" src="img\f5.svg" alt="f5" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+        <div class="memory-card" data-framework="f5">
+            <img class="front-face" src="img\f5.svg" alt="f5" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+
+        <div class="memory-card" data-framework="f6">
+            <img class="front-face" src="img\f6.svg" alt="f6" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+        <div class="memory-card" data-framework="f6">
+            <img class="front-face" src="img\f6.svg" alt="f6" />
+            <img class="back-face" src="img\f7.svg" alt="f7" />
+        </div>
+    </section>
+
+    <div id="popup-overlay" class="popup-overlay">
+        <div class="popup-content">
+            <p> คุณแน่ใจหรือไม่ที่จะออกจากเกม ? </p>
+            <button id="confirm-exit" class="btn">ใช่</button>
+            <button id="cancel-exit" class="btn">ไม่</button>
+        </div>
+    </div>
+
+    <div id="game-end-popup" class="popup">
+        <div class="popup-content">
+            <p>คุณชนะ !</p>
+            <p id="final-score" style="font-family: 'Kanit';">คะแนนของคุณคือ: 0</p>
+            <button id="restart-btn" class="btn">เล่นอีกครั้ง</button>
+            <button id="exit-btn" class="btn">ออกจากเกม</button>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Memory Card Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="scripts.js"></script>
+</head>
+
+<body>
+    <h1>Multiplayer Memory Card Game</h1>
+
+    <script>
+        // ฟังก์ชันที่ทำให้ปุ่ม "Join Room" ถูกปิดการใช้งานเมื่อถูกคลิก
+        function disableButton() {
+            const clickButton = document.getElementById('click');
+            if (clickButton) {
+                clickButton.disabled = true;
+                clickButton.style.display = 'none';
+                console.log('funcitonal');
+            }
+        }
+    </script>
+
+    <div style="margin:10px">
+    <!-- Section to enter room code and join the game -->
+    <section class="room-section" style="margin: 20px; ">
+        <input type="text" id="room-code" placeholder="Enter room code" required>
+        <button id='click' onclick="joinRoom(document.getElementById('room-code').value);disableButton()">Join Room</button>
+    </section>
+
+    <!-- Indicator to show whose turn it is -->
+    <section class="game-status" style="margin: 10px; text-align: center; background-color: cadetblue;">
+        <p id="turn-indicator">Waiting for players...</p>
+    </section>
+    </div>
+
+
+    <!-- Section to display the game score and exit button -->
+    <section class="score-section">
+        <div class="score-container">
+            <div id="score" class="score">Score: 0</div>
+        </div>
+        <button id="exit-btn" class="exit">Exit Game</button>
+    </section>
+    <script>
+        // เมื่อคลิกปุ่ม exit จะเปลี่ยนเส้นทางไปยังหน้า index.html
+        document.getElementById('exit-btn').addEventListener('click', function() {
+            window.location.href = 'index.html'; // เปลี่ยนเส้นทางไปที่หน้า index.html
+        });
+    </script>
+
+    <section class="memory-game">
+        <div class="memory-card" id="card-1" data-framework="animal1" onclick="flipCard(1)">
+            <img class="front-face" src="img/animal1.svg" alt="Animal 1">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-2" data-framework="animal1" onclick="flipCard(2)">
+            <img class="front-face" src="img/animal1.svg" alt="Animal 1">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-3" data-framework="animal2" onclick="flipCard(3)">
+            <img class="front-face" src="img/animal2.svg" alt="Animal 2">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-4" data-framework="animal2" onclick="flipCard(4)">
+            <img class="front-face" src="img/animal2.svg" alt="Animal 2">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-5" data-framework="animal3" onclick="flipCard(5)">
+            <img class="front-face" src="img/animal3.svg" alt="Animal 3">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-6" data-framework="animal3" onclick="flipCard(6)">
+            <img class="front-face" src="img/animal3.svg" alt="Animal 3">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-7" data-framework="animal4" onclick="flipCard(7)">
+            <img class="front-face" src="img/animal4.svg" alt="Animal 4">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-8" data-framework="animal4" onclick="flipCard(8)">
+            <img class="front-face" src="img/animal4.svg" alt="Animal 4">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-9" data-framework="animal5" onclick="flipCard(9)">
+            <img class="front-face" src="img/animal5.svg" alt="Animal 5">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-10" data-framework="animal5" onclick="flipCard(10)">
+            <img class="front-face" src="img/animal5.svg" alt="Animal 5">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-11" data-framework="animal6" onclick="flipCard(11)">
+            <img class="front-face" src="img/animal6.svg" alt="Animal 6">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-12" data-framework="animal6" onclick="flipCard(12)">
+            <img class="front-face" src="img/animal6.svg" alt="Animal 6">
+            <img class="back-face" src="img/animal-badge.svg" alt="Badge">
+        </div>
+    </section>
+</body>
+
+</html>
