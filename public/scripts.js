@@ -56,6 +56,7 @@ function flipCard(cardId) {
         return;  // Ignore if card is already flipped
     }
 
+    flipSound.play();
     console.log(`Flipping card ${cardId}`);
     card.classList.add('flipped');  // Add the flipped class to the card
 
@@ -87,8 +88,10 @@ function flipCard(cardId) {
 
     if (isMatch) {
         disableCards();
+        matchSound.play();
     } else {
         unflipCards();
+        nomatchSound.play();
     }
 }
 
@@ -134,6 +137,7 @@ socket.on('cardFlipped', (data) => {
         disableOpponentCards(card1, card2);
     } else {
         console.log('Opponent did not find a match. Unflipping their cards.');
+        nomatchSound.play();
         setTimeout(() => {
             card1.classList.remove('flipped');
             card2.classList.remove('flipped');
@@ -209,8 +213,8 @@ function switchTurn() {
 // Listen for game over event
 socket.on('gameOver', (data) => {
     if (data.winner) {
-        alert(`Game over! The winner is ${data.winner === socket.id ? 'You' : 'Your opponent'}`);
+        alert(`Game over! ${data.winner === socket.id ? 'You Win' : 'Your Lose ไอ้ขี้แพ้'}`);
     } else {
-        alert("Game over! It's a tie!");
+        alert("Game over! เสมอกัน");
     }
 });
