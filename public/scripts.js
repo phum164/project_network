@@ -91,7 +91,6 @@ function flipCard(cardId) {
         matchSound.play();
     } else {
         unflipCards();
-        nomatchSound.play();
     }
 }
 
@@ -137,7 +136,7 @@ socket.on('cardFlipped', (data) => {
         disableOpponentCards(card1, card2);
     } else {
         console.log('Opponent did not find a match. Unflipping their cards.');
-        nomatchSound.play();
+        // nomatchSound.play();
         setTimeout(() => {
             card1.classList.remove('flipped');
             card2.classList.remove('flipped');

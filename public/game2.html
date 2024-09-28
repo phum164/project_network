@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game Fruits</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="scripts.js"></script>
+</head>
+
+<body>
+    <h1>Multiplayer Memory Fruits</h1> 
+
+    <script>
+        // ฟังก์ชันที่ทำให้ปุ่ม "Join Room" ถูกปิดการใช้งานเมื่อถูกคลิก
+        function disableButton() {
+            const clickButton = document.getElementById('click');
+            if (clickButton) {
+                clickButton.disabled = true;
+                clickButton.style.display = 'none';
+                console.log('funcitonal');
+            }
+        }
+    </script>
+
+    <div style="margin:10px">
+    <!-- Section to enter room code and join the game -->
+    <section class="room-section" style="margin: 20px; ">
+        <input type="text" id="room-code" placeholder="Enter room code" required style="text-align: center;">
+        <button id='click' onclick="joinRoom(document.getElementById('room-code').value);disableButton()">Join Room</button>
+    </section>
+
+    <!-- Indicator to show whose turn it is -->
+    <section class="game-status" style="margin: 10px; text-align: center; background-color: cadetblue;">
+        <p id="turn-indicator">Waiting for players...</p>
+    </section>
+    </div>
+
+
+    <!-- Section to display the game score and exit button -->
+    <section class="score-section">
+        <div class="score-container">
+            <div id="score" class="score">Score: 0</div>
+        </div>
+        <button id="exit-btn" class="exit">Exit Game</button>
+    </section>
+    <script>
+        // เมื่อคลิกปุ่ม exit จะเปลี่ยนเส้นทางไปยังหน้า index.html
+        document.getElementById('exit-btn').addEventListener('click', function() {
+            window.location.href = 'index.html'; // เปลี่ยนเส้นทางไปที่หน้า index.html
+        });
+    </script>
+
+    <section class="memory-game">
+        <div class="memory-card" id="card-1" data-framework="Fruits1" onclick="flipCard(1)">
+            <img class="front-face" src="img\f1.svg" alt="Fruits1">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-2" data-framework="Fruits1" onclick="flipCard(2)">
+            <img class="front-face" src="img\f1.svg" alt="Fruits1">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-3" data-framework="Fruits" onclick="flipCard(3)">
+            <img class="front-face" src="img\f2.svg" alt="Fruits2">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-4" data-framework="Fruits" onclick="flipCard(4)">
+            <img class="front-face" src="img\f2.svg" alt="Fruits2">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-5" data-framework="Fruits3" onclick="flipCard(5)">
+            <img class="front-face" src="img\f3.svg" alt="Fruits 3">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-6" data-framework="Fruits3" onclick="flipCard(6)">
+            <img class="front-face" src="img\f3.svg" alt="Fruits 3">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-7" data-framework="Fruits4" onclick="flipCard(7)">
+            <img class="front-face" src="img\f4.svg" alt="Fruits 4">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-8" data-framework="Fruits4" onclick="flipCard(8)">
+            <img class="front-face" src="img\f4.svg" alt="Fruits 4">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-9" data-framework="Fruits5" onclick="flipCard(9)">
+            <img class="front-face" src="img\f5.svg" alt="Fruits 5">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-10" data-framework="Fruits5" onclick="flipCard(10)">
+            <img class="front-face" src="img\f5.svg" alt="Fruits 5">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+
+        <div class="memory-card" id="card-11" data-framework="Fruits6" onclick="flipCard(11)">
+            <img class="front-face" src="img\f6.svg" alt="Fruits 6">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+        <div class="memory-card" id="card-12" data-framework="Fruits6" onclick="flipCard(12)">
+            <img class="front-face" src="img\f6.svg" alt="Fruits 6">
+            <img class="back-face" src="img\f7.svg" alt="Badge">
+        </div>
+    </section>
+</body>
+
+</html>
