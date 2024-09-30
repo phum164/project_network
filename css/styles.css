@@ -50,7 +50,7 @@ body {
     margin: 5px auto;
 }
 .memory-game-page .memory-card {
-  width: calc(20% - 10px); /* ปรับให้การ์ดเหลือ 20% */
+  width: calc(15% - 10px); /* ปรับให้การ์ดเหลือ 20% */
   height: auto;
   margin: 5px;
   position: relative;
