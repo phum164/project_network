@@ -11,8 +11,6 @@
 </head>
 
 <body>
-    <h1>Multiplayer Memory Fruits</h1> 
-
     <script>
         // ฟังก์ชันที่ทำให้ปุ่ม "Join Room" ถูกปิดการใช้งานเมื่อถูกคลิก
         function disableButton() {
@@ -25,16 +23,17 @@
         }
     </script>
 
-    <div style="margin:10px">
+    <div>
+    <br>
     <!-- Section to enter room code and join the game -->
-    <section class="room-section" style="margin: 20px; ">
-        <input type="text" id="room-code" placeholder="Enter room code" required style="text-align: center;">
-        <button id='click' onclick="joinRoom(document.getElementById('room-code').value);disableButton()">Join Room</button>
+    <section class="room-section" style="margin: 10px 0; ">
+        <input class="formcode" type="text" id="room-code" placeholder="Enter room code" required >
+        <button id='click' class="join" onclick="joinRoom(document.getElementById('room-code').value);disableButton()">Join Room</button>
     </section>
 
     <!-- Indicator to show whose turn it is -->
-    <section class="game-status" style="margin: 10px; text-align: center; background-color: cadetblue;">
-        <p id="turn-indicator">Waiting for players...</p>
+    <section class="game-status">
+        <p id="turn-indicator">Enter code room</p>
     </section>
     </div>
 
@@ -44,12 +43,12 @@
         <div class="score-container">
             <div id="score" class="score">Score: 0</div>
         </div>
-        <button id="exit-btn" class="exit">Exit Game</button>
+        <!-- <button id="exit-btn" class="exit">Play agin</button> -->
     </section>
     <script>
         // เมื่อคลิกปุ่ม exit จะเปลี่ยนเส้นทางไปยังหน้า index.html
         document.getElementById('exit-btn').addEventListener('click', function() {
-            window.location.href = 'index.html'; // เปลี่ยนเส้นทางไปที่หน้า index.html
+            window.location.href = 'game.html'; // เปลี่ยนเส้นทางไปที่หน้า index.html
         });
     </script>
 

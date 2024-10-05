@@ -9,26 +9,24 @@
 
 body {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #a806e7, #ff1493);
+    background-color: blueviolet;
 }
 
 .score-section {
-    margin-bottom: 20px;
+    margin: 10px auto;
+    
 }
 
 .score-section {
   display: flex;
   justify-content: space-between; 
   align-items: center; 
-  padding: 10px 20px; 
-  background-color: rgb(255, 255, 255); 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 38%;
+  background-color: white;
+  padding: 10px 20px;
+  width: 48%;
+  margin:30px auto;
 }
 
 .score {
@@ -220,4 +218,40 @@ button{
 }
 
 
+.formcode{
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  width: 300px;
 
+}
+.join{
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: rgb(255, 12, 12);
+  color: white;
+}
+
+.join:hover{
+  background-color: rgb(228, 0, 0);
+}
+
+
+
+
+.game-status p {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#turn-indicator {
+  font-family: 'Kanit', sans-serif; /* ใช้ฟอนต์ Kanit */
+  color: rgb(255, 255, 255); /* สีของข้อความ */
+  padding: 10px 20px; /* ระยะห่างในกล่อง */
+  border-radius: 8px; /* มุมมนของกล่องข้อความ */
+  text-align: center;
+}
+.room-section{
+  text-align: center;
+}
