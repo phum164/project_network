@@ -10,142 +10,145 @@
 </head>
 
 <body class="memory-game-page">
+    <script>
+        // Retrieve player name and room code from URL when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const queryParams = new URLSearchParams(window.location.search);
+            const playerName = queryParams.get('name');
+            const roomCode = queryParams.get('room');
+            const totalCards = queryParams.get('cards');
+
+            if (playerName && roomCode) {
+                console.log(roomCode);
+                console.log(playerName);
+                // Set up socket and join the room
+                joinRoom(roomCode, playerName, totalCards);
+                document.getElementById('player-info').textContent = `Player: ${playerName} | Room: ${roomCode}`;
+            } else {
+                alert('Player name and room code are required to join.');
+                window.location.href = 'index.html'; // Redirect back if data is missing
+            }
+        });
+    </script>
+
+    <div>
+        <div id="turn-indicator" class="turn-indicator">
+            <section class="game-status">
+                <p id="turn-indicator">Wait another player</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js">
+    </script>
+    <!-- โชว์คะแนน ประวัติการแพ้ชนะ -->
+    <p id="player-info" style="color: white; margin-left: 3em;font-size: 1.3em;"></p>
+    <br>
     <section class="score-section">
-        <div class="score-container">
-            <div id="score" class="score">Score: 0</div>
+        <div id="score">Score 0</div>
+        <div class="hisgame">
+            <p>ประวัติการแพ้ชนะ</p>
+            <p id="win-tracker">Wins - You: 0, Opponent: 0</p>
         </div>
-        <button id="exit-btn2" class="exit">Exit</button>
     </section>
+    <!-- end  -->
     <section class="memory-game">
-        <div class="memory-card" data-framework="p1">
+        <div class="memory-card" id="card-1" data-framework="p1" onclick="flipCard(1)">
             <img class="front-face" src="img\planet\p1.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p1">
+        <div class="memory-card" id="card-2" data-framework="p1" onclick="flipCard(2)">
             <img class="front-face" src="img\planet\p1.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
-        <div class="memory-card" data-framework="p2">
+        <div class="memory-card" id="card-3" data-framework="p2" onclick="flipCard(3)">
             <img class="front-face" src="img\planet\p2.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p2">
+        <div class="memory-card" id="card-4" data-framework="p2" onclick="flipCard(4)">
             <img class="front-face" src="img\planet\p2.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
-        <div class="memory-card" data-framework="p3">
+        <div class="memory-card" id="card-5" data-framework="p3" onclick="flipCard(5)">
             <img class="front-face" src="img\planet\p3.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p3">
+        <div class="memory-card" id="card-6" data-framework="p3" onclick="flipCard(6)">
             <img class="front-face" src="img\planet\p3.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
-        <div class="memory-card" data-framework="p4">
+        <div class="memory-card" id="card-7" data-framework="p4" onclick="flipCard(7)">
             <img class="front-face" src="img\planet\p4.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p4">
+        <div class="memory-card" id="card-8" data-framework="p4" onclick="flipCard(8)">
             <img class="front-face" src="img\planet\p4.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
 
-        <div class="memory-card" data-framework="p5">
+        <div class="memory-card" id="card-9" data-framework="p5" onclick="flipCard(9)">
             <img class="front-face" src="img\planet\p5.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p5">
+        <div class="memory-card" id="card-10" data-framework="p5" onclick="flipCard(10)">
             <img class="front-face" src="img\planet\p5.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
 
-        <div class="memory-card" data-framework="p6">
+        <div class="memory-card" id="card-11" data-framework="p6" onclick="flipCard(11)">
             <img class="front-face" src="img\planet\p6.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p6">
+        <div class="memory-card" id="card-12" data-framework="p6" onclick="flipCard(12)">
             <img class="front-face" src="img\planet\p6.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
-        <div class="memory-card" data-framework="p7">
+        <div class="memory-card" id="card-13" data-framework="p7" onclick="flipCard(13)">
             <img class="front-face" src="img\planet\p7.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p7">
+        <div class="memory-card" id="card-14" data-framework="p7" onclick="flipCard(14)">
             <img class="front-face" src="img\planet\p7.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
-        <div class="memory-card" data-framework="p8">
+        <div class="memory-card" id="card-15" data-framework="p8" onclick="flipCard(15)">
             <img class="front-face" src="img\planet\p8.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p8">
+        <div class="memory-card" id="card-16" data-framework="p8" onclick="flipCard(16)">
             <img class="front-face" src="img\planet\p8.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
-        <div class="memory-card" data-framework="p9">
+        <div class="memory-card" id="card-17" data-framework="p9" onclick="flipCard(17)">
             <img class="front-face" src="img\planet\p9.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p9">
+        <div class="memory-card" id="card-18" data-framework="p9" onclick="flipCard(18)">
             <img class="front-face" src="img\planet\p9.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
-        <div class="memory-card" data-framework="p10">
+        <div class="memory-card" id="card-19" data-framework="p10" onclick="flipCard(19)">
             <img class="front-face" src="img\planet\p10.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
-        <div class="memory-card" data-framework="p10">
+        <div class="memory-card" id="card-20" data-framework="p10" onclick="flipCard(20)">
             <img class="front-face" src="img\planet\p10.svg" />
-            <img class="back-face" src="img\planet\planet.svg" />
-        </div>
-
-        <div class="memory-card" data-framework="p11">
-            <img class="front-face" src="img\planet\p11.svg" />
-            <img class="back-face" src="img\planet\planet.svg" />
-        </div>
-        <div class="memory-card" data-framework="p11">
-            <img class="front-face" src="img\planet\p11.svg" />
-            <img class="back-face" src="img\planet\planet.svg" />
-        </div>
-
-        <div class="memory-card" data-framework="p12">
-            <img class="front-face" src="img\planet\p12.svg" />
-            <img class="back-face" src="img\planet\planet.svg" />
-        </div>
-        <div class="memory-card" data-framework="p12">
-            <img class="front-face" src="img\planet\p12.svg" />
             <img class="back-face" src="img\planet\planet.svg" />
         </div>
 
 
     </section>
 
-    <div id="popup-overlay" class="popup-overlay">
-        <div class="popup-content">
-            <p> คุณแน่ใจหรือไม่ที่จะออกจากเกม ? </p>
-            <button id="confirm-exit" class="btn">ใช่</button>
-            <button id="cancel-exit" class="btn">ไม่</button>
-        </div>
-    </div>
 
-    <div id="game-end-popup" class="popup">
-        <div class="popup-content">
-            <p>คุณชนะ !</p>
-            <p id="final-score" style="font-family: 'Kanit';">คะแนนของคุณคือ: 0</p>
-            <button id="restart-btn" class="btn">เล่นอีกครั้ง</button>
-            <button id="exit-btn" class="btn">ออกจากเกม</button>
-        </div>
-    </div>
 
     <script src="scripts.js"></script>
 </body>

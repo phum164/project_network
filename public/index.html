@@ -28,6 +28,13 @@
         </div>
       </div>
 
+      <div class="col-md-4">
+        <div class="category-card" id="star">
+          <img src="img/planet.png" alt="Fruits" class="category-image">
+          <h3>ดวงดาว</h3>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -43,6 +50,14 @@
 
 
     document.getElementById('fruits').addEventListener('click', function () {
+      clickStart.play();
+
+      setTimeout(function () {
+        window.location.href = 'enterFruit.html';
+      }, 500);
+    });
+
+    document.getElementById('star').addEventListener('click', function () {
       clickStart.play();
 
       setTimeout(function () {

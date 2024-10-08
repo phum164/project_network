@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="category-card" id="animalH">
+                <div class="category-card" id="animalSH">
                     <!-- <img src="img/fruits.png" alt="Fruits" class="category-image"> -->
                     <h3>ระดับยาก</h3>
                 </div>
@@ -55,6 +55,14 @@
 
             setTimeout(function () {
                 window.location.href = 'enteranimal_hard.html';
+            }, 500);
+        });
+
+        document.getElementById('animalSH').addEventListener('click', function () {
+            clickStart.play();
+
+            setTimeout(function () {
+                window.location.href = 'enteranimal_superhard.html';
             }, 500);
         });
     </script>

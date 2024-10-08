@@ -9,256 +9,269 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="memory-game-page">
-    <section class="score-section">
-        <div class="score-container"> 
-            <div id="score" class="score">Score: 0</div>
-        </div>        
-        <button id="exit-btn2" class="exit">Exit</button>
-    </section>
-    <section class="memory-game">
-        <div class="memory-card" data-framework="animalH1">
-            <img class="front-face" src="img\animalH1.svg" alt="animalH1" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH1">
-            <img class="front-face" src="img\animalH1.svg" alt="animalH1" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
+<script>
+    // Retrieve player name and room code from URL when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const playerName = queryParams.get('name');
+        const roomCode = queryParams.get('room');
+        const totalCards = queryParams.get('cards');
 
-        <div class="memory-card" data-framework="animalH2">
-            <img class="front-face" src="img\animalH2.svg" alt="animalH2" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH2">
-            <img class="front-face" src="img\animalH2.svg" alt="animalH2" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
+        if (playerName && roomCode) {
+            console.log(roomCode);
+            console.log(playerName);
+            // Set up socket and join the room
+            joinRoom(roomCode, playerName, totalCards);
+            document.getElementById('player-info').textContent = `Player: ${playerName} | Room: ${roomCode}`;
+        } else {
+            alert('Player name and room code are required to join.');
+            window.location.href = 'index.html'; // Redirect back if data is missing
+        }
+    });
+</script>
 
-        <div class="memory-card" data-framework="animalH3">
-            <img class="front-face" src="img\animalH3.svg" alt="animalH3" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH3">
-            <img class="front-face" src="img\animalH3.svg" alt="animalH3" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
+<div>
+    <div id="turn-indicator" class="turn-indicator">
+        <section class="game-status">
+            <p id="turn-indicator">Wait another player</p>
+        </section>
+    </div>
+</div>
 
-        <div class="memory-card" data-framework="animalH4">
-            <img class="front-face" src="img\animalH4.svg" alt="animalH4" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH4">
-            <img class="front-face" src="img\animalH4.svg" alt="animalH4" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="animalH5">
-            <img class="front-face" src="img\animalH5.svg" alt="animalH5" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH5">
-            <img class="front-face" src="img\animalH5.svg" alt="animalH5" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="animalH6">
-            <img class="front-face" src="img\animalH6.svg" alt="animalH6" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH6">
-            <img class="front-face" src="img\animalH6.svg" alt="animalH6" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="animalH7">
-            <img class="front-face" src="img\animalH7.svg" alt="animalH7" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH7">
-            <img class="front-face" src="img\animalH7.svg" alt="animalH7" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-      
-
-        <div class="memory-card" data-framework="animalH8">
-            <img class="front-face" src="img\animalH8.svg" alt="animalH8" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH8">
-            <img class="front-face" src="img\animalH8.svg" alt="animalH8" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="animalH9">
-            <img class="front-face" src="img\animalH9.svg" alt="animalH9" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="animalH9">
-            <img class="front-face" src="img\animalH9.svg" alt="animalH9" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        
-        <div class="memory-card" data-framework="animalH10">
-            <img class="front-face" src="img\animalH10.svg" alt="animalH10" />
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH10">
-            <img class="front-face" src="img\animalH10.svg" alt="animalH10"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="animalH11">
-            <img class="front-face" src="img\animalH11.svg" alt="animalH11"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH11">
-            <img class="front-face" src="img\animalH11.svg" alt="animalH11"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="animalH12">
-            <img class="front-face" src="img\animalH12.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="animalH12">
-            <img class="front-face" src="img\animalH12.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="a13">
-            <img class="front-face" src="img\a13.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a13">
-            <img class="front-face" src="img\a13.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="a14">
-            <img class="front-face" src="img\a14.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a14">
-            <img class="front-face" src="img\a14.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        
-        <div class="memory-card" data-framework="a15">
-            <img class="front-face" src="img\a15.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a15">
-            <img class="front-face" src="img\a15.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-      
-        <div class="memory-card" data-framework="a16">
-            <img class="front-face" src="img\a16.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a16">
-            <img class="front-face" src="img\a16.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="a17">
-            <img class="front-face" src="img\a17.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a17">
-            <img class="front-face" src="img\a17.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="a18">
-            <img class="front-face" src="img\a18.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a18">
-            <img class="front-face" src="img\a18.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="a19">
-            <img class="front-face" src="img\a19.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a19">
-            <img class="front-face" src="img\a19.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="a20">
-            <img class="front-face" src="img\a20.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a20">
-            <img class="front-face" src="img\a20.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="a21">
-            <img class="front-face" src="img\a21.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a21">
-            <img class="front-face" src="img\a21.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        
-        <div class="memory-card" data-framework="a22">
-            <img class="front-face" src="img\a22.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a22">
-            <img class="front-face" src="img\a22.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        
-        <div class="memory-card" data-framework="a23">
-            <img class="front-face" src="img\a23.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a23">
-            <img class="front-face" src="img\a23.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-
-        <div class="memory-card" data-framework="a24">
-            <img class="front-face" src="img\a24.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-        <div class="memory-card" data-framework="a24">
-            <img class="front-face" src="img\a24.svg" alt="animalH12"/>
-            <img class="back-face" src="img\animal-badge.svg" alt="f7" />
-        </div>
-              
-
-    </section>
-
-    <div id="popup-overlay" class="popup-overlay">
-        <div class="popup-content">
-            <p> คุณแน่ใจหรือไม่ที่จะออกจากเกม ? </p>
-            <button id="confirm-exit" class="btn">ใช่</button>
-            <button id="cancel-exit" class="btn">ไม่</button>
-        </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js">
+</script>
+<p id="player-info" style="color: white; margin-left: 3em;font-size: 1.3em;"></p>
+<br>
+<section class="score-section">
+    <div id="score">Score 0</div>
+    <div class="hisgame">
+        <p>ประวัติการแพ้ชนะ</p>
+        <p id="win-tracker">Wins - You: 0, Opponent: 0</p>
+    </div>
+</section>
+<section class="memory-game">
+    <div class="memory-card" id="card-1" data-framework="animalH1" onclick="flipCard(1)">
+        <img class="front-face" src="img\animalH1.svg" alt="animalH1" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-2" data-framework="animalH1" onclick="flipCard(2)">
+        <img class="front-face" src="img\animalH1.svg" alt="animalH1" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
     </div>
 
-    <div id="game-end-popup" class="popup">
-        <div class="popup-content">
-            <p>คุณชนะ !</p>
-            <p id="final-score" style="font-family: 'Kanit';">คะแนนของคุณคือ: 0</p>
-            <button id="restart-btn" class="btn">เล่นอีกครั้ง</button>
-            <button id="exit-btn" class="btn">ออกจากเกม</button>
-        </div>
+    <div class="memory-card" id="card-3" data-framework="animalH2" onclick="flipCard(3)">
+        <img class="front-face" src="img\animalH2.svg" alt="animalH2" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-4" data-framework="animalH2" onclick="flipCard(4)">
+        <img class="front-face" src="img\animalH2.svg" alt="animalH2" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
     </div>
 
-    <script src="scripts.js"></script>
+    <div class="memory-card" id="card-5" data-framework="animalH3" onclick="flipCard(5)">
+        <img class="front-face" src="img\animalH3.svg" alt="animalH3" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-6" data-framework="animalH3" onclick="flipCard(6)">
+        <img class="front-face" src="img\animalH3.svg" alt="animalH3" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-7" data-framework="animalH4" onclick="flipCard(7)">
+        <img class="front-face" src="img\animalH4.svg" alt="animalH4" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-8" data-framework="animalH4" onclick="flipCard(8)">
+        <img class="front-face" src="img\animalH4.svg" alt="animalH4" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-9" data-framework="animalH5" onclick="flipCard(9)">
+        <img class="front-face" src="img\animalH5.svg" alt="animalH5" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-10" data-framework="animalH5" onclick="flipCard(10)">
+        <img class="front-face" src="img\animalH5.svg" alt="animalH5" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-11" data-framework="animalH6" onclick="flipCard(11)">
+        <img class="front-face" src="img\animalH6.svg" alt="animalH6" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-12" data-framework="animalH6" onclick="flipCard(12)">
+        <img class="front-face" src="img\animalH6.svg" alt="animalH6" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-13" data-framework="animalH7" onclick="flipCard(13)">
+        <img class="front-face" src="img\animalH7.svg" alt="animalH7" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-14" data-framework="animalH7" onclick="flipCard(14)">
+        <img class="front-face" src="img\animalH7.svg" alt="animalH7" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+
+    <div class="memory-card" id="card-15" data-framework="animalH8" onclick="flipCard(15)">
+        <img class="front-face" src="img\animalH8.svg" alt="animalH8" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-16" data-framework="animalH8" onclick="flipCard(16)">
+        <img class="front-face" src="img\animalH8.svg" alt="animalH8" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-17" data-framework="animalH9" onclick="flipCard(17)">
+        <img class="front-face" src="img\animalH9.svg" alt="animalH9" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-18" data-framework="animalH9" onclick="flipCard(18)">
+        <img class="front-face" src="img\animalH9.svg" alt="animalH9" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+
+    <div class="memory-card" id="card-19" data-framework="animalH10" onclick="flipCard(19)">
+        <img class="front-face" src="img\animalH10.svg" alt="animalH10" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-20" data-framework="animalH10" onclick="flipCard(20)">
+        <img class="front-face" src="img\animalH10.svg" alt="animalH10" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-21" data-framework="animalH11" onclick="flipCard(21)">
+        <img class="front-face" src="img\animalH11.svg" alt="animalH11" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-22" data-framework="animalH11" onclick="flipCard(22)">
+        <img class="front-face" src="img\animalH11.svg" alt="animalH11" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-23" data-framework="animalH12" onclick="flipCard(23)">
+        <img class="front-face" src="img\animalH12.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-24" data-framework="animalH12" onclick="flipCard(24)">
+        <img class="front-face" src="img\animalH12.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-25" data-framework="a13" onclick="flipCard(25)">
+        <img class="front-face" src="img\a13.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-26" data-framework="a13" onclick="flipCard(26)">
+        <img class="front-face" src="img\a13.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-27" data-framework="a14" onclick="flipCard(27)">
+        <img class="front-face" src="img\a14.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-28" data-framework="a14" onclick="flipCard(28)">
+        <img class="front-face" src="img\a14.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-29" data-framework="a15" onclick="flipCard(29)">
+        <img class="front-face" src="img\a15.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-30" data-framework="a15" onclick="flipCard(30)">
+        <img class="front-face" src="img\a15.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-31" data-framework="a16" onclick="flipCard(31)">
+        <img class="front-face" src="img\a16.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-32" data-framework="a16" onclick="flipCard(32)">
+        <img class="front-face" src="img\a16.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-33" data-framework="a17" onclick="flipCard(33)">
+        <img class="front-face" src="img\a17.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-34" data-framework="a17" onclick="flipCard(34)">
+        <img class="front-face" src="img\a17.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-35" data-framework="a18" onclick="flipCard(35)">
+        <img class="front-face" src="img\a18.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-36" data-framework="a18" onclick="flipCard(36)">
+        <img class="front-face" src="img\a18.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-37" data-framework="a19" onclick="flipCard(37)">
+        <img class="front-face" src="img\a19.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-38" data-framework="a19" onclick="flipCard(38)">
+        <img class="front-face" src="img\a19.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-39" data-framework="a20" onclick="flipCard(39)">
+        <img class="front-face" src="img\a20.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-40" data-framework="a20" onclick="flipCard(40)">
+        <img class="front-face" src="img\a20.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-41" data-framework="a21" onclick="flipCard(41)">
+        <img class="front-face" src="img\a21.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-42" data-framework="a21" onclick="flipCard(42)">
+        <img class="front-face" src="img\a21.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-43" data-framework="a22" onclick="flipCard(43)">
+        <img class="front-face" src="img\a22.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-44" data-framework="a22" onclick="flipCard(44)">
+        <img class="front-face" src="img\a22.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-45" data-framework="a23" onclick="flipCard(45)">
+        <img class="front-face" src="img\a23.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-46" data-framework="a23" onclick="flipCard(46)">
+        <img class="front-face" src="img\a23.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+    <div class="memory-card" id="card-47" data-framework="a24" onclick="flipCard(47)">
+        <img class="front-face" src="img\a24.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+    <div class="memory-card" id="card-48" data-framework="a24" onclick="flipCard(48)">
+        <img class="front-face" src="img\a24.svg" alt="animalH12" />
+        <img class="back-face" src="img\animal-badge.svg" alt="f7" />
+    </div>
+
+
+</section>
+
+<script src="scripts.js"></script>
 </body>
 
 </html>
