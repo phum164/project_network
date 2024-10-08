@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Room</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="/socket.io/socket.io.js"></script>
+  <script defer src="scripts.js"></script>
+</head>
+<body>
+  <div class="container text-center game-intro">
+    <h1 class="game-title">Animal_Hard<br> MATCH GAME</h1>
+    <img src="img/logo.png" alt="Card with question mark" class="game-logo">
+    <section class="room-section" style="margin: 10px 0;">
+      <input class="formcode" type="text" id="player-name" placeholder="Enter your name" required>
+      <input class="formcode" type="text" id="room-code" placeholder="Enter room code" required>
+      <button id="join-room" class="btn btn-danger start-btn w-100">Join Room</button>
+    </section>
+  </div>
+  <script>
+    const clickStart = new Audio('sounds/game-start.mp3');
+    document.getElementById('join-room').addEventListener('click', () => {
+      clickStart.play();
+      const playerName = document.getElementById('player-name').value;
+      const roomCode = document.getElementById('room-code').value;
+
+      if (!playerName || !roomCode) {
+        alert("Please enter both your name and the room code.");
+        return;
+      }
+
+      // Save roomCode and playerName to localStorage
+      localStorage.setItem('roomCode', roomCode);
+      localStorage.setItem('playerName', playerName);
+
+      // Redirect to the game page with playerName and roomCode as URL parameters
+      window.location.href = `app_animalHard.html?name=${playerName}&room=${roomCode}&cards=24`;
+    });
+  </script>
+</body>
+</html>

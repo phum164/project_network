@@ -18,12 +18,13 @@
             const queryParams = new URLSearchParams(window.location.search);
             const playerName = queryParams.get('name');
             const roomCode = queryParams.get('room');
+            const totalCards = queryParams.get('cards');
 
             if (playerName && roomCode) {
                 console.log(roomCode);
                 console.log(playerName);
                 // Set up socket and join the room
-                joinRoom(roomCode,playerName);
+                joinRoom(roomCode,playerName,totalCards);
                 document.getElementById('player-info').textContent = `Player: ${playerName} | Room: ${roomCode}`;
             } else {
                 alert('Player name and room code are required to join.');
@@ -33,12 +34,6 @@
     </script>
 
     <div>
-        <!-- <section class="room-section" style="margin: 10px 0; ">
-            <input class="formcode" type="text" id="player-name" readonly>
-            <input class="formcode" type="text" id="room-code" readonly>
-            <button id='click' class="join"
-                onclick="joinRoom(document.getElementById('room-code').value);disableButton()">Join Room</button>
-        </section> -->
         <div id="turn-indicator" class="turn-indicator">
             <section class="game-status">
                 <p id="turn-indicator">Wait another player</p>
@@ -53,7 +48,7 @@
         <p id="player-info"></p>
         <br>
         <div id="score">Score: 0</div>
-        <h3 id="win-tracker">Wins - You: 0, Opponent: 0</h3>
+        <h2 id="win-tracker">Wins - You: 0, Opponent: 0</h2>
     </section>
 
     <section class="memory-game">
@@ -111,8 +106,6 @@
             <img class="back-face" src="img/animal-badge.svg" alt="Badge">
         </div>
     </section>
-
-
 
 </body>
 
