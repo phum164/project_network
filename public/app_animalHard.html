@@ -23,7 +23,7 @@
                 console.log(roomCode);
                 console.log(playerName);
                 // Set up socket and join the room
-                joinRoom(roomCode,playerName,totalCards);
+                joinRoom(roomCode, playerName, totalCards);
                 document.getElementById('player-info').textContent = `Player: ${playerName} | Room: ${roomCode}`;
             } else {
                 alert('Player name and room code are required to join.');
@@ -42,13 +42,18 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js">
     </script>
-
+    <!-- โชว์คะแนน ประวัติการแพ้ชนะ -->
+    <p id="player-info" style="color: white; margin-left: 3em;font-size: 1.3em;"></p>
+    <br>
     <section class="score-section">
-        <p id="player-info"></p>
-        <br>
-        <div id="score">Score: 0</div>
-        <h2 id="win-tracker">Wins - You: 0, Opponent: 0</h2>
+        <div id="score">Score 0</div>
+        <div class="hisgame">
+            <p>ประวัติการแพ้ชนะ</p>
+            <p id="win-tracker">Wins - You: 0, Opponent: 0</p>
+        </div>
     </section>
+    <!-- end  -->
+
 
     <section class="memory-game">
         <div class="memory-card" id="card-1" data-framework="animalH1" onclick="flipCard(1)">

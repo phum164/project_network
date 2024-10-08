@@ -4,7 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Anton", "Kanit", sans-serif;
+    font-family: "Kanit", sans-serif;
 }
 
 body {
@@ -13,28 +13,37 @@ body {
 }
 
 .score-section {
-    margin: 10px auto;
-    
-}
-
-.score-section {
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: white;
-  padding: 10px 20px;
-  width: 48%;
-  margin:30px auto;
+  justify-content: space-between;  
+  margin:1em 4em; 
 }
 
-.score {
-    color: rgb(0, 0, 0);
-    font-size: 2em;
-    font-weight: l;
-}
+    #score {
+        font-size: 1.4em;
+        text-align: center;
+        padding: 15px;
+        width: 8%;
+        border-radius: 10px;
+        color: rgb(44, 44, 44);
+  
+        background-color: white;
+    }
 
+    #win-tracker {
+        font-size: 1.2em;
+        font-weight: 500;
+        color: #e74c3c;
+ 
+    }
+    .hisgame{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+      background-color: white;
+      width: 24%;
+      border-radius:10px;
+      padding: 7px;
+    }
 .memory-game {
     width: 640px;
     height: 640px;
@@ -48,7 +57,7 @@ body {
     margin: 5px auto;
 }
 .memory-game-page .memory-card {
-  width: calc(15% - 10px); /* ปรับให้การ์ดเหลือ 20% */
+  width: calc(20% - 10px); /* ปรับให้การ์ดเหลือ 20% */
   height: auto;
   margin: 5px;
   position: relative;
@@ -156,6 +165,7 @@ button{
   border: none;
   border-radius: 8px;
   cursor: pointer;
+
 }
 
 .btn:hover {
@@ -237,21 +247,71 @@ button{
   background-color: rgb(228, 0, 0);
 }
 
-
-
-
 .game-status p {
   font-size: 1.5em;
   font-weight: bold;
+}
+.start-btn{
+  display: block;
+  width: 100%;
+  margin-top: 1em;
+  padding: 0.5em;
+  border-radius :15px ;
+  font-size: 1em;
+  background-color: #ff1414;
+  cursor: pointer;
+  color: white;
+}
+
+.start-btn:hover{
+  box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.2);
+  background-color: #df0000;
 }
 
 #turn-indicator {
   font-family: 'Kanit', sans-serif; /* ใช้ฟอนต์ Kanit */
   color: rgb(255, 255, 255); /* สีของข้อความ */
-  padding: 10px 20px; /* ระยะห่างในกล่อง */
+  margin-top: 20px;
   border-radius: 8px; /* มุมมนของกล่องข้อความ */
   text-align: center;
 }
-.room-section{
+
+.game-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  min-height: 100vh; 
+}
+
+.room-section {
+  font-size: 1em;
+  color: white;
+  line-height: 40px;
+  text-align: center; 
+}
+
+.game-title{
+  color: white;
   text-align: center;
 }
+
+.logoimg{
+  text-align: center;
+}
+
+.game-logo {
+  width: 20%;
+  margin-top: 2em; ;
+  animation: moveUpDown 2s ease-in-out infinite; /* กำหนดอนิเมชั่น */
+}
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); 
+  }
+}
+
