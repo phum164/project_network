@@ -11,46 +11,45 @@
 </head>
 
 <body>
+
     <script>
-        // ฟังก์ชันที่ทำให้ปุ่ม "Join Room" ถูกปิดการใช้งานเมื่อถูกคลิก
-        function disableButton() {
-            const clickButton = document.getElementById('click');
-            if (clickButton) {
-                clickButton.disabled = true;
-                clickButton.style.display = 'none';
-                console.log('funcitonal');
+        // Retrieve player name and room code from URL when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const queryParams = new URLSearchParams(window.location.search);
+            const playerName = queryParams.get('name');
+            const roomCode = queryParams.get('room');
+            const totalCards = queryParams.get('cards');
+
+            if (playerName && roomCode) {
+                console.log(roomCode);
+                console.log(playerName);
+                // Set up socket and join the room
+                joinRoom(roomCode,playerName,totalCards);
+                document.getElementById('player-info').textContent = `Player: ${playerName} | Room: ${roomCode}`;
+            } else {
+                alert('Player name and room code are required to join.');
+                window.location.href = 'index.html'; // Redirect back if data is missing
             }
-        }
+        });
     </script>
 
     <div>
-    <br>
-    <!-- Section to enter room code and join the game -->
-    <section class="room-section" style="margin: 10px 0; ">
-        <input class="formcode" type="text" id="room-code" placeholder="Enter room code" required >
-        <button id='click' class="join" onclick="joinRoom(document.getElementById('room-code').value);disableButton()">Join Room</button>
-    </section>
-
-    <!-- Indicator to show whose turn it is -->
-    <section class="game-status">
-        <p id="turn-indicator">Enter code room</p>
-    </section>
+        <div id="turn-indicator" class="turn-indicator">
+            <section class="game-status">
+                <p id="turn-indicator">Wait another player</p>
+            </section>
+        </div>
     </div>
 
-
-    <!-- Section to display the game score and exit button -->
-    <section class="score-section">
-        <div class="score-container">
-            <div id="score" class="score">Score: 0</div>
-        </div>
-        <!-- <button id="exit-btn" class="exit">Play agin</button> -->
-    </section>
-    <script>
-        // เมื่อคลิกปุ่ม exit จะเปลี่ยนเส้นทางไปยังหน้า index.html
-        document.getElementById('exit-btn').addEventListener('click', function() {
-            window.location.href = 'game.html'; // เปลี่ยนเส้นทางไปที่หน้า index.html
-        });
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js">
     </script>
+
+    <section class="score-section">
+        <p id="player-info"></p>
+        <br>
+        <div id="score">Score: 0</div>
+        <h2 id="win-tracker">Wins - You: 0, Opponent: 0</h2>
+    </section>
 
     <section class="memory-game">
         <div class="memory-card" id="card-1" data-framework="animal1" onclick="flipCard(1)">
@@ -107,6 +106,7 @@
             <img class="back-face" src="img/animal-badge.svg" alt="Badge">
         </div>
     </section>
+
 </body>
 
 </html>
