@@ -30,6 +30,11 @@ function joinRoom(code,name,cards) {
     document.getElementById('turn-indicator').innerText = "Waiting for players...";
 }
 
+// เสียง
+const clickStart = new Audio('sounds/game-start.mp3');
+const flipSound = new Audio('sounds/flip.mp3');
+const matchSound = new Audio('sounds/match.wav');
+const nomatchSound = new Audio('sounds/not-match.mp3');
 
 // Listen for game start
 socket.on('startGame', (data) => {
@@ -99,6 +104,7 @@ function flipCard(cardId) {
         return;
     }
 
+    flipSound.play();
     card.classList.add('flipped');
     if (!hasFlippedCard) {
         hasFlippedCard = true;
@@ -122,8 +128,10 @@ function flipCard(cardId) {
     });
 
     if (isMatch) {
+        matchSound.play();
         disableCards();
     } else {
+        // nomatchSound.play();
         unflipCards();
     }
 }
@@ -186,7 +194,7 @@ socket.on('gameOver', (data) => {
             opponentWins += 1;
         }
 
-        document.getElementById('win-tracker').innerText = `Wins - You: ${myWins}, Opponent: ${opponentWins}`;
+        document.getElementById('win-tracker').innerText = `ประวัติ คุณ: ${myWins} || คู่ต่อสู้: ${opponentWins}`;
         Swal.fire({
             title: 'Game Over!',
             imageUrl: data.winner === socket.id ? "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTIzb29iZWxpZ211aDZqcHpqMWw4NmdqeGsxbXEzMTZ2c3ozdmE1dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/e2LpQ4dQLpw4jfSYMg/giphy.webp" : "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHJieHRxNXl6M3hqdDc3MHhlMWZ4bGRnNnRqbG12aW85NXl4YmQ1ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1n4iuWZFnTeN6qvdpD/giphy.webp",
@@ -195,7 +203,7 @@ socket.on('gameOver', (data) => {
             imageHeight: 200,
             imageAlt: "Custom image",
             // icon: data.winner === socket.id ? 'success' : 'danger',
-            timer: 4000, // ปิดอัตโนมัติหลัง 3 วินาที
+            timer: 4000,
             showConfirmButton: false
         });
     } else {

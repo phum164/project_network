@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,26 @@
   <script defer src="/socket.io/socket.io.js"></script>
   <script defer src="scripts.js"></script>
 </head>
+
 <body>
- <div class="container text-center game-intro">
-    <h1 class="game-title"> THE MEMORY <span style="color: yellow; font-size: 1;">MATCH GAME</span> </h1>
+  <!-- เพิ่มเพลงพื้นหลัง -->
+  <audio id="background-music" autoplay loop hidden>
+    <source src="sounds/backG.mp3" type="audio/mp3">
+    <!-- คุณสามารถเพิ่ม source สำหรับไฟล์เสียงรูปแบบอื่นๆ ได้ตามต้องการ -->
+    Your browser does not support the audio element.
+  </audio>
+  <div class="container text-center game-intro">
+    <h1 class="game-title"> THE MEMORY <span style="color: yellow; font-size: 1;">MATCH GAME</span> <span
+      style="color: rgb(226, 10, 10); font-size: 1;"> Animal SuperHard</span></h1>
     <div class="logoimg">
       <img src="img/logo.png" alt="Card with question mark" class="game-logo">
     </div>
     <section class="room-section" style="margin: 10px 0;">
-      <p style="text-align: left;">กรอกชื่อผู้เล่น</p><input class="formcode" type="text" id="player-name" placeholder="Enter your name" required>
+      <p style="text-align: left;">กรอกชื่อผู้เล่น</p><input class="formcode" type="text" id="player-name"
+        placeholder="Enter your name" required>
       <br>
-      <p style="text-align: left;">กรอกเลขห้อง</p><input class="formcode" type="text" id="room-code" placeholder="Enter room code" required>
+      <p style="text-align: left;">กรอกเลขห้อง</p><input class="formcode" type="text" id="room-code"
+        placeholder="Enter room code" required>
       <br><button id="join-room" class=" btn-danger start-btn w-100">Join Room</button>
     </section>
   </div>
@@ -42,4 +53,5 @@
     });
   </script>
 </body>
+
 </html>

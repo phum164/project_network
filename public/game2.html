@@ -69,12 +69,19 @@
     </script>
 
     <div>
-        <div id="turn-indicator" class="turn-indicator">
+        <div class="turn-indicator">
             <section class="game-status">
-                <p id="turn-indicator">Wait another player</p>
+                <p id="turn-indicator" style="color: rgb(222, 247, 0); margin-left: 3em;font-size: 1.3em;">Wait another player</p>
             </section>
         </div>
     </div>
+
+    <!-- เพิ่มเพลงพื้นหลัง -->
+    <audio id="background-music" autoplay loop hidden>
+        <source src="sounds/Chipi.mp3" type="audio/mp3">
+        <!-- คุณสามารถเพิ่ม source สำหรับไฟล์เสียงรูปแบบอื่นๆ ได้ตามต้องการ -->
+        Your browser does not support the audio element.
+    </audio>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js">
     </script>
@@ -84,7 +91,7 @@
         <div id="score">Score 0</div>
         <div class="hisgame">
             <p>ประวัติการแพ้ชนะ</p>
-            <p id="win-tracker">Wins - You: 0, Opponent: 0</p>
+            <p id="win-tracker">ประวัติ คุณ: 0 || ฝ่ายตรงข้าม: 0</p>
         </div>
     </section>
 

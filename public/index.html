@@ -11,6 +11,13 @@
 
 <body>
 
+  <!-- เพิ่มเพลงพื้นหลัง -->
+  <audio id="background-music" autoplay loop hidden>
+    <source src="sounds/backG.mp3" type="audio/mp3">
+    <!-- คุณสามารถเพิ่ม source สำหรับไฟล์เสียงรูปแบบอื่นๆ ได้ตามต้องการ -->
+    Your browser does not support the audio element.
+  </audio>
+
   <div class="container text-center select-category">
     <h1 class="choose-title">เลือกหมวดหมู่ที่คุณต้องการ</h1>
     <div class="row justify-content-center">
@@ -61,7 +68,7 @@
       clickStart.play();
 
       setTimeout(function () {
-        window.location.href = 'enterFruit.html';
+        window.location.href = 'enterStars.html';
       }, 500);
     });
   </script>
